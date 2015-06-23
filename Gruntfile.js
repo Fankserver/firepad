@@ -52,7 +52,7 @@ module.exports = function (grunt) {
             '  else context[name] = definition();',
             '})(\'Firepad\', function () {'
           ].join('\n'),
-          footer: "\nreturn firepad.Firepad; }, this);"
+          footer: "\nreturn firepad.Firepad; }, this);\nif (module && module.exports) { module.exports = Firepad; }"
         },
         "src": [
           "lib/utils.js",
@@ -68,6 +68,7 @@ module.exports = function (grunt) {
           "lib/client.js",
           "lib/editor-client.js",
           "lib/ace-adapter.js",
+          "lib/atom-adapter.js",
           "lib/constants.js",
           "lib/entity-manager.js",
           "lib/entity.js",
@@ -123,6 +124,15 @@ module.exports = function (grunt) {
         autowatch: false,
         singleRun: true
       }
+    },
+    watch: {
+      scripts: {
+        files: ['lib/*'],
+        tasks: ['default'],
+        options: {
+          spawn: false
+        }
+      }
     }
   });
 
@@ -131,6 +141,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
 
