@@ -52,7 +52,7 @@ module.exports = function (grunt) {
             '  else context[name] = definition();',
             '})(\'Firepad\', function () {'
           ].join('\n'),
-          footer: "\nreturn firepad.Firepad; }, this);\nif (module && module.exports) { module.exports = Firepad; }"
+          footer: "\nreturn firepad.Firepad; }, this);"
         },
         "src": [
           "lib/utils.js",
